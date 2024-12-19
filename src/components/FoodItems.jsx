@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 import FoodCard from "./FoodCard";
@@ -6,12 +7,25 @@ import FoodData from "../data/FoodData.js";
 
 const FoodItems = () => {
    const [selectedCategory, setSelectedCategory] = useState("all");
+   const [filteredFood, setFilteredFood] = useState(FoodData);
+   const location = useLocation();
+
+   useEffect(() => {
+      const query = new URLSearchParams(location.search);
+      const search = query.get("search");
+      if (search) {
+         const filtered = FoodData.filter(food =>
+            food.name.toLowerCase().includes(search.toLowerCase())
+         );
+         setFilteredFood(filtered);
+      } else {
+         setFilteredFood(FoodData);
+      }
+   }, [location.search]);
+
    const handleToast = (name) => toast.success(`Added ${name} to cart`);
 
    const categories = ["all", ...new Set(FoodData.map(item => item.category))];
-   const filteredFood = selectedCategory === "all" 
-      ? FoodData 
-      : FoodData.filter(food => food.category === selectedCategory);
 
    return (
       <>

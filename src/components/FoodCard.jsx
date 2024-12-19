@@ -11,7 +11,7 @@ const FoodCard = ({ id, name, price, desc, img, rating, serves, items, recommend
    const dispatch = useDispatch();
    const cartItems = useSelector((state) => state.cart.cart);
    const [showSuccessModal, setShowSuccessModal] = useState(false);
-   
+
    // Find if item exists in cart
    const cartItem = cartItems.find(item => item.id === id);
 
@@ -43,13 +43,14 @@ const FoodCard = ({ id, name, price, desc, img, rating, serves, items, recommend
                   </div>
                )}
                {recommended && (
-                  <div className="absolute top-2 left-2 bg-gradient-to-r from-yellow to-orange-600 text-white px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg transform hover:scale-105 transition-all">
-                     <MdRecommend className="text-xl animate-pulse" />
-                     <span className="font-semibold text-sm">Recommended</span>
+                  <div className="absolute top-2 left-2 bg-yellow text-black px-3 py-1 rounded-full flex items-center gap-2 shadow-md transform hover:scale-105 transition-all">
+                     <MdRecommend className="text-lg" />
+                     <span className="font-medium text-xs sm:text-sm leading-tight">Recommended</span>
                   </div>
                )}
+
             </div>
-            
+
             <div className="flex justify-between items-center">
                <h2 className="text-xl font-bold text-gray-800">{name}</h2>
                <span className="text-2xl font-bold text-yellow">₹{price}</span>
@@ -109,17 +110,17 @@ const FoodCard = ({ id, name, price, desc, img, rating, serves, items, recommend
                         </svg>
                      </div>
                      <h3 className="text-xl font-bold mb-2">Added to Cart!</h3>
-                     <p className="text-gray-600 mb-6">{name} has been added to your cart</p>
+                     <p className="text-gray-600 mb-6"><span className="font-semibold text-red-500">{name}</span> has been added to your cart</p>
                      <div className="flex gap-2 justify-center">
-                        <Link 
+                        <Link
                            to="/cart"
-                           className="px-6 py-2 flex justify-center items-center gap-1 bg-yellow text-sm text-white rounded-lg hover:bg-yellow-600 transition-all"
+                           className="px-3 md:px-6 py-2 flex justify-center items-center gap-1 bg-green-500 text-sm text-white rounded-lg hover:bg-yellow-600 transition-all"
                         >
-                          <FaShoppingCart />  Go to Cart
+                           <FaShoppingCart />  Go to Cart
                         </Link>
                         <button
                            onClick={() => setShowSuccessModal(false)}
-                           className="px-6 py-2 border text-sm border-yellow text-yellow rounded-lg hover:bg-yellow hover:text-white transition-all"
+                           className="px-3 md:px-6 py-2 border text-sm border-green-500 text-green-600 rounded-lg hover:bg-green-500 hover:text-white transition-all"
                         >
                            Continue Shopping
                         </button>

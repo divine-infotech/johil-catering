@@ -76,7 +76,7 @@ const Cart = () => {
                   <Link to={"/menu"}>
                      <button
                         type="button"
-                        className="px-3 py-2 text-sm font-semibold text-black border border-black rounded-md shadow-sm">
+                        className="px-3  py-3 text-sm font-semibold text-black border border-black rounded-md shadow-sm">
                         Back to shop
                      </button>
                   </Link>
@@ -89,7 +89,7 @@ const Cart = () => {
                   ) : (
                      <button 
                         onClick={() => setShowCheckout(true)}
-                        className="w-full md:w-auto px-6 py-3 bg-yellow text-white rounded-lg"
+                        className=" md:w-auto px-2 md:px-6 py-3 bg-yellow text-white rounded-lg"
                      >
                         Proceed to Checkout
                      </button>

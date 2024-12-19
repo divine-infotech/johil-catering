@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import biriyaniImg from '../assets/briyani.png'
-
+import FoodData from "../data/FoodData.js"; // Import your food data
 
 const Hero = () => {
+   const [searchTerm, setSearchTerm] = useState("");
+   const [suggestions, setSuggestions] = useState([]);
+   const navigate = useNavigate();
+
+   const handleSearchChange = (e) => {
+      const value = e.target.value;
+      setSearchTerm(value);
+      if (value) {
+         const filteredSuggestions = FoodData.filter(food =>
+            food.name.toLowerCase().includes(value.toLowerCase())
+         );
+         setSuggestions(filteredSuggestions);
+      } else {
+         setSuggestions([]);
+      }
+   };
+
+   const handleSuggestionClick = (suggestion) => {
+      setSearchTerm(suggestion.name);
+      setSuggestions([]);
+      navigate(`/menu?search=${suggestion.name}`);
+   };
+
    return (
       <div className="relative -mt-8 bg-white lg:w-full">
          <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
@@ -23,17 +47,32 @@ const Hero = () => {
                   </div>
                </h1>
                <p className="mt-8 text-lg text-gray-700">
-                  "Satisfy your cravings, elevate your taste. Welcome to{" "}
-                  <span className="font-semibold text-yellow">Food Zone</span>,
-                  where every bite is a delight!"
+               We provide complete catering and event services {" "}
+                 for  <span className="font-semibold text-yellow">unforgettable weddings!</span>
                </p>
                <form action="" className="flex items-start mt-8 space-x-2">
-                  <div>
+                  <div className="relative">
                      <input
                         className="flex w-full px-3 py-2 text-sm bg-transparent border rounded-md border-black/30 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="search"
                         placeholder="Search food"
-                        id="search"></input>
+                        id="search"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                     />
+                     {suggestions.length > 0 && (
+                        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+                           {suggestions.map((suggestion) => (
+                              <li
+                                 key={suggestion.id}
+                                 className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+                                 onClick={() => handleSuggestionClick(suggestion)}
+                              >
+                                 {suggestion.name}
+                              </li>
+                           ))}
+                        </ul>
+                     )}
                      <p className="mt-2 text-sm text-gray-500">
                         We care about your food
                      </p>
@@ -41,7 +80,9 @@ const Hero = () => {
                   <div>
                      <button
                         type="button"
-                        className="rounded-md bg-yellow px-3 py-2.5 text-sm font-semibold hover:text-white text-black shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                        className="rounded-md bg-yellow px-3 py-2.5 text-sm font-semibold hover:text-white text-black shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                        onClick={() => navigate(`/menu?search=${searchTerm}`)}
+                     >
                         Search
                      </button>
                   </div>
@@ -50,7 +91,7 @@ const Hero = () => {
 
             <div className="relative px-2 lg:col-span-5 xl:col-span-6 lg:mb-9">
                <img
-                  className="aspect-[3/2] bg-gray-50 object-cover lg:aspect-[4/3] lg:h-[530px] xl:aspect-[1/1] lg:mt-14  "
+                  className="bg-gray-50 object-contain md:object-cover lg:aspect-[4/3] lg:h-[530px] xl:aspect-[1/1] lg:mt-14"
                   src={biriyaniImg}
                   alt=""
                />

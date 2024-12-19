@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { FaShoppingCart } from "react-icons/fa";
@@ -19,21 +19,38 @@ const Navbar = () => {
       },
    ];
 
-   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+   const [isMenuOpen, setIsMenuOpen] = useState(false);
+   const [isScrolled, setIsScrolled] = useState(false);
 
    const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
    };
 
+   useEffect(() => {
+      const handleScroll = () => {
+         if (window.scrollY > 50) {
+            setIsScrolled(true);
+         } else {
+            setIsScrolled(false);
+         }
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+         window.removeEventListener("scroll", handleScroll);
+      };
+   }, []);
+
    return (
       <>
-         <div className="relative w-full px-4 bg-white">
+         <div
+            className={`${
+               isScrolled ? "fixed top-0 left-0 z-50 right-0 shadow-md" : "relative"
+            } w-full px-4 bg-white transition-all duration-300`}>
             <div className="flex items-center justify-between py-2 mx-auto max-w-7xl sm:px-6 lg:px-10">
                <Link to={"/"}>
                   <div className="inline-flex items-center space-x-2">
                      <div className="flex flex-col justify-between my-5 lg:flex-row">
                         <div className="">
-                           
                            <div className="font-bold text-xl lg:text-3xl">
                               Johil <span className="text-yellow">Catering & Events</span>
                            </div>
@@ -60,17 +77,15 @@ const Navbar = () => {
                </div>
 
                {/* Cart Icon */}
-               {
-                  <Link to={"/cart"}>
-                     <FaShoppingCart className="ml-10 text-xl lg:text-2xl lg:-mx-12 md:ml-96 sm:ml-80 " />
-                  </Link>
-               }
+               <Link to={"/cart"}>
+                  <FaShoppingCart className="ml-10  text-xl lg:text-2xl lg:-mx-12 md:ml-96 sm:ml-80 " />
+               </Link>
 
                <div className="hidden lg:block">
                   <Link to={"/contact"}>
                      <button
                         type="button"
-                        className="w-full px-3 py-2 text-sm font-semibold text-black rounded-md shadow-sm bg-yellow hover:bg-black/80 hover:text-white ">
+                        className="w-full px-3 py-2 text-sm font-semibold text-black rounded-md shadow-sm bg-yellow hover:bg-black/80 hover:text-white">
                         Contact
                      </button>
                   </Link>
@@ -113,11 +128,11 @@ const Navbar = () => {
                               </nav>
                            </div>
 
-                           <Link to={"/signIn"}>
+                           <Link to={"/contact"}>
                               <button
                                  type="button"
-                                 className="w-full px-3 py-2 mt-4 text-sm font-semibold text-black rounded-md shadow-sm bg-yellow hover:bg-black/80 hover:text-white ">
-                                 Sign in
+                                 className="w-full px-3 py-2 mt-4 text-sm font-semibold text-black rounded-md shadow-sm bg-yellow hover:bg-black/80 hover:text-white">
+                                 Contact Us
                               </button>
                            </Link>
                         </div>
