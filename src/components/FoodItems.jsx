@@ -13,15 +13,20 @@ const FoodItems = () => {
    useEffect(() => {
       const query = new URLSearchParams(location.search);
       const search = query.get("search");
+      let filtered = FoodData;
+
       if (search) {
-         const filtered = FoodData.filter(food =>
+         filtered = filtered.filter(food =>
             food.name.toLowerCase().includes(search.toLowerCase())
          );
-         setFilteredFood(filtered);
-      } else {
-         setFilteredFood(FoodData);
       }
-   }, [location.search]);
+
+      if (selectedCategory !== "all") {
+         filtered = filtered.filter(food => food.category === selectedCategory);
+      }
+
+      setFilteredFood(filtered);
+   }, [location.search, selectedCategory]);
 
    const handleToast = (name) => toast.success(`Added ${name} to cart`);
 

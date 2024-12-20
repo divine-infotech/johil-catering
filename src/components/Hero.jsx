@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import biriyaniImg from '../assets/briyani.png'
 import FoodData from "../data/FoodData.js"; // Import your food data
+import ScrollAnimation from "./ScrollAnimation.jsx";
 
 const Hero = () => {
    const [searchTerm, setSearchTerm] = useState("");
@@ -28,6 +29,7 @@ const Hero = () => {
    };
 
    return (
+      <ScrollAnimation delay={0.2}>
       <div className="relative -mt-8 bg-white lg:w-full">
          <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
             <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
@@ -98,6 +100,7 @@ const Hero = () => {
             </div>
          </div>
       </div>
+      </ScrollAnimation>
    );
 };
 
