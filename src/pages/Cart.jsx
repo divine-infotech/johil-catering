@@ -21,9 +21,41 @@ const Cart = () => {
       0
    );
 
-   const handleCheckout = (formData) => {
-      dispatch(setOrderDetails(formData));
-      navigate('/success');
+   const handleCheckout = async (formData) => {
+      try {
+         // Format order details as a string
+         const orderDetailsString = cartItems.map(item => 
+            `${item.name} x ${item.qty} - ₹${item.price * item.qty}`
+         ).join('\n');
+
+         // Prepare order details
+         const orderDetails = {
+            ...formData,
+            order: orderDetailsString,
+            total: `₹${totalPrice}`
+         };
+
+         // Send data to Web3Forms
+         const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+               access_key: "5203fa70-07f3-4c97-9ede-b414c14b7e68",
+               ...orderDetails
+            })
+         });
+
+         if (response.ok) {
+            dispatch(setOrderDetails(orderDetails));
+            navigate('/success');
+         } else {
+            console.error("Failed to send order details");
+         }
+      } catch (error) {
+         console.error("Error during checkout:", error);
+      }
    };
 
    return (

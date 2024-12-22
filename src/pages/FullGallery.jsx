@@ -1,14 +1,20 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 
+import img1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.jpg";
+import img3 from "../assets/img3.jpg";
+import img4 from "../assets/img4.webp";
+import img5 from '../assets/img5.webp'
+
+
 const FullGallery = () => {
    const images = [
-      "https://via.placeholder.com/300",
-      "https://via.placeholder.com/300",
-      "https://via.placeholder.com/300",
-      "https://via.placeholder.com/300",
-      "https://via.placeholder.com/300",
-      "https://via.placeholder.com/300",
+      img5,
+      img4,
+        img1,
+       img2,
+       img3
    ];
 
    return (
@@ -22,7 +28,7 @@ const FullGallery = () => {
                   <img
                      src={image}
                      alt={`Gallery image ${index + 1}`}
-                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                     className="w-full h-64 object-fill hover:scale-105 transition-transform duration-300"
                   />
                </div>
             ))}

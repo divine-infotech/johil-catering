@@ -6,6 +6,8 @@ import "./index.css";
 // Import Loading component
 import Loading from "./components/Loading"; // Now this import will work
 import ProtectedRoute from "./components/ProtectedRoute";
+import WhatsAppWidget from "./components/WhatsAppWidget";
+import SocialPopup from "./components/SocialPopup";
 
 // Lazy load pages for better performance
 const Home = React.lazy(() => import("./pages/Home"));
@@ -38,6 +40,8 @@ const App = () => {
                   />
                   <Route path="/*" element={<Error />} />
                </Routes>
+               <WhatsAppWidget/>
+               <SocialPopup/>
             </Suspense>
          </BrowserRouter>
       </ErrorBoundary>

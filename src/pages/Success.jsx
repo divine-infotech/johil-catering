@@ -35,6 +35,11 @@ const Success = () => {
          }, 6000);
 
          setTimeout(() => {
+            // Send message to WhatsApp
+            const whatsappMessage = `Order Details:\n${orderDetails.order}\nTotal: ${orderDetails.total}\nName: ${orderDetails.name}\nPhone: ${orderDetails.phone}\nAddress: ${orderDetails.address}`;
+            const whatsappUrl = `https://wa.me/+919042621178?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+
             dispatch(clearOrderDetails());
             dispatch(clearCart());
             navigate('/');
