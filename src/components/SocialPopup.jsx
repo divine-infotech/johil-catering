@@ -31,11 +31,7 @@ const SocialPopup = () => {
           >
                <button
                   onClick={handleClose}
-<<<<<<< HEAD
                   className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors z-50 pointer-events-auto"
-=======
-                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
->>>>>>> 05f80738e11612e3ece2068019c5041a8597deb0
                >
                   <IoMdClose className="w-6 h-6" />
                </button>
