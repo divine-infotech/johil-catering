@@ -20,13 +20,13 @@ const SocialPopup = () => {
 
    return (
       isVisible && (
-         <div className="fixed  inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-hidden">
             <motion.div
                initial={{ opacity: 0, scale: 0.8 }}
                animate={{ opacity: 1, scale: 1 }}
                exit={{ opacity: 0, scale: 0.8 }}
                
-               className="bg-white border-[2px]  border-pink-600 rounded-2xl shadow-2xl p-6 md:p-8 max-w-md w-full relative"
+               className="bg-white border-[2px]  border-pink-600 rounded-2xl shadow-2xl p-6 md:p-8 max-w-md w-full relative overflow-hidden"
                      
           >
                <button

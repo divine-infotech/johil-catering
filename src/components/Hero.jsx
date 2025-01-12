@@ -30,7 +30,7 @@ const Hero = () => {
 
    return (
       <ScrollAnimation delay={0.2}>
-      <div className="relative -mt-8 bg-white lg:w-full">
+      <div className="relative -mt-8 bg-white lg:w-full overflow-hidden">
          <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
             <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
                <div className="flex items-center p-1 space-x-2 bg-gray-100 rounded-full max-w-max">
@@ -93,7 +93,7 @@ const Hero = () => {
 
             <div className="relative px-2 lg:col-span-5 xl:col-span-6 lg:mb-9">
                <img
-                  className="bg-gray-50 object-contain md:object-cover lg:aspect-[4/3] lg:h-[530px] xl:aspect-[1/1] lg:mt-14"
+                  className="bg-gray-50 object-contain md:object-cover lg:aspect-[4/3] lg:h-[530px] xl:aspect-[1/1] lg:mt-14 max-w-full h-auto"
                   src={biriyaniImg}
                   alt=""
                />
