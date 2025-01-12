@@ -68,7 +68,7 @@ const VideoSection = () => {
          whileInView={{ opacity: 1, y: 0 }}
          viewport={{ once: true }}
          transition={{ duration: 0.8, ease: "easeOut" }}
-         className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-white to-gray-50 py-16 px-4 md:px-10"
+         className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-white to-gray-50 py-16 px-4 md:px-10 overflow-hidden"
       >
          <motion.div 
             className="w-full md:w-1/2 mb-6 md:mb-0 relative"
@@ -77,11 +77,11 @@ const VideoSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
          >
-            <div className="aspect-[9/16] max-w-[400px] mx-auto relative">
+            <div className="aspect-[9/16] max-w-full mx-auto relative">
                <div className="absolute inset-0 bg-yellow/10 rounded-2xl -rotate-6 transform"></div>
                <video
                   ref={videoRef}
-                  className="w-full h-full object-cover rounded-2xl shadow-xl relative z-10"
+                  className="w-full h-full object-cover rounded-2xl shadow-xl relative z-10 max-w-full"
                   autoPlay
                   loop
                   muted
