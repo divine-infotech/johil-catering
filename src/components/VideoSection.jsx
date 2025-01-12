@@ -78,7 +78,7 @@ const VideoSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
          >
             <div className="aspect-[9/16] max-w-full mx-auto relative">
-               <div className="absolute inset-0 bg-yellow/10 rounded-2xl -rotate-6 transform"></div>
+               <div className="absolute inset-0 bg-yellow/10 rounded-2xl -rotate-6 transform hidden md:block"></div>
                <video
                   ref={videoRef}
                   className="w-full h-full object-cover rounded-2xl shadow-xl relative z-10 max-w-full"
